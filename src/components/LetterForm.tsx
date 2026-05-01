@@ -4,180 +4,120 @@ import { useState } from "react";
 
 export interface LetterFormData {
   name: string;
-  email: string;
+  title: string;
   message: string;
+  remarks?: string;
 }
 
 interface LetterFormProps {
   onSubmit: (data: LetterFormData) => Promise<void>;
-  isLoading?: boolean;
+  isLoading: boolean;
 }
 
-export default function LetterForm({
-  onSubmit,
-  isLoading = false,
-}: LetterFormProps) {
-  const [formData, setFormData] = useState<LetterFormData>({
+export default function LetterForm({ onSubmit, isLoading }: LetterFormProps) {
+  const [form, setForm] = useState<LetterFormData>({
     name: "",
-    email: "",
+    title: "",
     message: "",
+    remarks: "",
   });
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
-
-  const validateForm = (): boolean => {
-    const newErrors: Record<string, string> = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Please enter your name";
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Please enter your email";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Please write a message";
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
-    try {
-      await onSubmit(formData);
-      setFormData({ name: "", email: "", message: "" });
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 5000);
-    } catch (error) {
-      console.error("Error submitting letter:", error);
-    }
-  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors[name];
-        return newErrors;
-      });
-    }
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (
+      !form.name.trim() ||
+      !form.title.trim() ||
+      !form.message.trim() ||
+      !form.remarks?.trim()
+    )
+      return;
+    await onSubmit(form);
+    setForm({ name: "", title: "", message: "", remarks: "" });
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 4000);
+  };
+
+  const inputClass =
+    "w-full border border-gold/30 rounded-lg px-[1rem] py-[1rem] md:py-[1.2rem] md:px-[1rem] text-[1.3rem] md:text-[1.5rem] text-mahogany bg-cream/50 placeholder:text-mahogany/35 outline-none focus:border-gold transition-colors duration-200";
+  const labelClass =
+    "block text-mahogany text-[1.4rem] font-semibold mb-[0.6rem] tracking-wide";
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-[2rem]">
-      {/* Success Message */}
+    <form onSubmit={handleSubmit} className="flex flex-col gap-[2.4rem]">
       {submitted && (
-        <div className="p-[1.6rem] rounded-lg bg-green-100 border border-green-400 text-green-800">
-          <p className="font-semibold text-[1.4rem]">
-            ✓ Thank you for your letter! It will be reviewed and posted soon.
-          </p>
+        <div className="bg-gold/15 border border-gold/40 rounded-lg px-[1.6rem] py-[1.2rem] text-mahogany text-[1.4rem]">
+          ✓ Your letter has been sent. Thank you!
         </div>
       )}
 
-      {/* Name Field */}
       <div>
-        <label
-          htmlFor="name"
-          className="block text-mahogany font-semibold text-[1.4rem] mb-[0.8rem]"
-        >
-          Your Name *
-        </label>
+        <label className={labelClass}>Your Name *</label>
         <input
-          type="text"
-          id="name"
           name="name"
-          value={formData.name}
+          value={form.name}
           onChange={handleChange}
           placeholder="Enter your name"
-          className="w-full px-[1.6rem] py-[1.2rem] rounded-lg border-2 border-mahogany/20 focus:border-gold focus:outline-none text-mahogany text-[1.4rem] transition-colors duration-300"
-          disabled={isLoading}
+          required
+          className={inputClass}
+          style={{ fontFamily: "'Lato', sans-serif" }}
         />
-        {errors.name && (
-          <p className="text-red-600 text-[1.2rem] mt-[0.4rem]">
-            {errors.name}
-          </p>
-        )}
       </div>
 
-      {/* Email Field */}
       <div>
-        <label
-          htmlFor="email"
-          className="block text-mahogany font-semibold text-[1.4rem] mb-[0.8rem]"
-        >
-          Your Email *
-        </label>
+        <label className={labelClass}>Letter Title *</label>
         <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
+          name="title"
+          value={form.title}
           onChange={handleChange}
-          placeholder="your.email@example.com"
-          className="w-full px-[1.6rem] py-[1.2rem] rounded-lg border-2 border-mahogany/20 focus:border-gold focus:outline-none text-mahogany text-[1.4rem] transition-colors duration-300"
-          disabled={isLoading}
+          placeholder="Give your letter a title"
+          required
+          className={inputClass}
+          style={{ fontFamily: "'Lato', sans-serif" }}
         />
-        {errors.email && (
-          <p className="text-red-600 text-[1.2rem] mt-[0.4rem]">
-            {errors.email}
-          </p>
-        )}
       </div>
 
-      {/* Message Field */}
       <div>
-        <label
-          htmlFor="message"
-          className="block text-mahogany font-semibold text-[1.4rem] mb-[0.8rem]"
-        >
-          Your Message *
-        </label>
+        <label className={labelClass}>Your Message *</label>
         <textarea
-          id="message"
           name="message"
-          value={formData.message}
+          value={form.message}
           onChange={handleChange}
           placeholder="Share your heartfelt wishes, memories, or encouragement..."
-          rows={6}
-          className="w-full px-[1.6rem] py-[1.2rem] rounded-lg border-2 border-mahogany/20 focus:border-gold focus:outline-none text-mahogany text-[1.4rem] transition-colors duration-300 resize-none"
-          disabled={isLoading}
+          required
+          rows={7}
+          className={`${inputClass} resize-none`}
+          style={{ fontFamily: "'Lato', sans-serif" }}
         />
-        {errors.message && (
-          <p className="text-red-600 text-[1.2rem] mt-[0.4rem]">
-            {errors.message}
-          </p>
-        )}
-        <p className="text-mahogany/60 text-[1.2rem] mt-[0.4rem]">
-          {formData.message.length} characters
-        </p>
       </div>
 
-      {/* Submit Button */}
+      <div>
+        <label className={labelClass}> Closing Remarks *</label>
+        <input
+          name="remarks"
+          value={form.remarks}
+          onChange={handleChange}
+          placeholder="Yours sincerely"
+          required
+          className={inputClass + " italic"}
+          style={{ fontFamily: "'Lato', sans-serif" }}
+        />
+      </div>
+
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full px-[3.2rem] py-[1.4rem] rounded-full bg-gold text-mahogany text-[1.4rem] font-bold tracking-wider uppercase hover:bg-gold-light transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+        className="w-full bg-mahogany text-cream text-[1.3rem] md:text-[1.5rem] font-semibold py-4 rounded-full hover:bg-mahogany-light transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer tracking-wide"
+        style={{ fontFamily: "'Lato', sans-serif" }}
       >
-        {isLoading ? "Submitting..." : "Submit Letter ✉"}
+        {isLoading ? "Sending..." : "Send Letter ✉"}
       </button>
-
-      <p className="text-mahogany/60 text-[1.2rem] text-center">
-        All letters are reviewed before being posted. Thank you!
-      </p>
     </form>
   );
 }

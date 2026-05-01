@@ -1,60 +1,76 @@
 import LetterCard, { Letter } from "@/components/LetterCard";
-import LetterForm, { LetterFormData } from "@/components/LetterForm";
+import Pagination from "./Pagination";
 
 interface LettersGridProps {
-  onSubmitLetter: (data: LetterFormData) => Promise<void>;
-  isLoading: boolean;
   letters: Letter[];
+  sortOrder: "newest" | "oldest";
+  onSortChange: (val: "newest" | "oldest") => void;
+  onReadMore: (letter: Letter) => void;
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
 }
 
-function LettersGrid({ onSubmitLetter, isLoading, letters }: LettersGridProps) {
+export default function LettersGrid({
+  letters,
+  sortOrder,
+  onSortChange,
+  onReadMore,
+  currentPage,
+  totalPages,
+  onPageChange,
+}: LettersGridProps) {
   return (
-    <section className="py-[6.4rem] px-[2.4rem] md:px-[4.8rem] bg-cream">
-      <div className="max-w-480 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-[4.8rem]">
-        <div className="lg:col-span-1">
-          <div className="sticky top-36 bg-white rounded-lg border-2 border-gold/30 p-[2.4rem] shadow-lg">
-            <h2
-              className="text-mahogany text-[2rem] font-bold mb-8"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              ✉ Write a Letter
-            </h2>
-            <LetterForm onSubmit={onSubmitLetter} isLoading={isLoading} />
-          </div>
-        </div>
-
-        <div className="lg:col-span-2">
-          <div>
-            <h2
-              className="text-mahogany text-[2.4rem] font-bold mb-[2.4rem]"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Messages ({letters.length})
-            </h2>
-
-            {letters.length === 0 ? (
-              <div className="text-center py-[6.4rem] bg-white rounded-lg border-2 border-gold/20">
-                <p className="text-mahogany/60 text-[1.6rem] mb-[1.6rem]">
-                  No messages yet. Be the first to share your thoughts!
-                </p>
-                <p className="text-mahogany/40 text-[1.4rem]">
-                  Use the form to the left to write your letter.
-                </p>
-              </div>
-            ) : (
-              <div className="space-y-8">
-                {letters
-                  .filter((letter) => letter.approved)
-                  .map((letter) => (
-                    <LetterCard key={letter.id} letter={letter} />
-                  ))}
-              </div>
-            )}
-          </div>
-        </div>
+    <div>
+      {/* Sort Dropdown */}
+      <div className="flex justify-end mb-[3.2rem]">
+        <select
+          value={sortOrder}
+          onChange={(e) => onSortChange(e.target.value as "newest" | "oldest")}
+          className="text-[1.4rem] text-mahogany bg-white border border-gold/40 rounded-lg px-[1.6rem] py-[0.8rem] cursor-pointer outline-none focus:border-gold transition-colors duration-200"
+          style={{ fontFamily: "'Lato', sans-serif" }}
+        >
+          <option value="newest">Most Recent</option>
+          <option value="oldest">Oldest First</option>
+        </select>
       </div>
-    </section>
+
+      {/* Empty State */}
+      {letters.length === 0 ? (
+        <div className="text-center py-[9.6rem]">
+          <p
+            className="text-mahogany/50 text-[1.8rem] mb-[0.8rem]"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            No letters yet
+          </p>
+          <p className="text-mahogany/40 text-[1.4rem]">
+            Be the first to write one!
+          </p>
+        </div>
+      ) : (
+        <>
+          {/* Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-[2.4rem]">
+            {letters.map((letter) => (
+              <LetterCard
+                key={letter.id}
+                letter={letter}
+                onReadMore={onReadMore}
+              />
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+            />
+          )}
+        </>
+      )}
+    </div>
   );
 }
-
-export default LettersGrid;

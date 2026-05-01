@@ -1,8 +1,10 @@
-"use client";
+import { formatDistanceToNow } from "date-fns";
 
 export interface Letter {
   id: string;
   name: string;
+  title: string;
+  remarks?: string;
   message: string;
   createdAt: Date;
   approved: boolean;
@@ -10,42 +12,54 @@ export interface Letter {
 
 interface LetterCardProps {
   letter: Letter;
+  onReadMore: (letter: Letter) => void;
 }
 
-function formatRelativeTime(date: Date): string {
-  const now = new Date();
-  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
-
-  if (seconds < 60) return "just now";
-  if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
-  if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
-  if (seconds < 604800) return `${Math.floor(seconds / 86400)}d ago`;
-  return date.toLocaleDateString();
-}
-
-export default function LetterCard({ letter }: LetterCardProps) {
+export default function LetterCard({ letter, onReadMore }: LetterCardProps) {
   return (
-    <div className="bg-cream rounded-lg border-2 border-gold/30 p-[2.4rem] shadow-md hover:shadow-lg transition-all duration-300">
-      {/* Header */}
-      <div className="mb-[1.6rem]">
-        <h3
-          className="text-mahogany text-[1.6rem] font-bold mb-[0.4rem]"
+    <div className="bg-white rounded-2xl border border-gold/25 p-[2.4rem] flex flex-col gap-[1.2rem] hover:shadow-md hover:border-gold/50 transition-all duration-300">
+      <div>
+        <p
+          className="text-mahogany text-[1.5rem] font-bold leading-snug"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
           {letter.name}
-        </h3>
-        <p className="text-mahogany/60 text-[1.2rem]">
-          {formatRelativeTime(letter.createdAt)}
+        </p>
+        <p className="text-mahogany/45 text-[1.2rem] mt-[0.2rem]">
+          {formatDistanceToNow(new Date(letter.createdAt), { addSuffix: true })}
         </p>
       </div>
 
-      {/* Message */}
-      <p className="text-mahogany/80 text-[1.4rem] leading-relaxed whitespace-pre-wrap">
+      <div className="h-px bg-gold/20" />
+
+      <h3
+        className="text-mahogany text-[1.6rem] font-bold leading-snug"
+        style={{ fontFamily: "'Playfair Display', serif" }}
+      >
+        {letter.title}
+      </h3>
+
+      <p
+        className="text-mahogany/70 text-[1.4rem] leading-relaxed line-clamp-4 flex-1"
+        style={{ fontFamily: "'Lato', sans-serif" }}
+      >
         {letter.message}
       </p>
 
-      {/* Decorative Line */}
-      <div className="mt-[1.6rem] pt-[1.6rem] border-t border-gold/20" />
+      <p
+        className="text-mahogany/50 text-[1.3rem] italic"
+        style={{ fontFamily: "'Playfair Display', serif" }}
+      >
+        — {letter.remarks?.trim() ? letter.remarks : letter.name}
+      </p>
+
+      <button
+        onClick={() => onReadMore(letter)}
+        className="text-gold-dark text-[1.3rem] font-medium text-left hover:text-gold transition-colors duration-200 cursor-pointer w-fit"
+        style={{ fontFamily: "'Lato', sans-serif" }}
+      >
+        Read More →
+      </button>
     </div>
   );
 }
