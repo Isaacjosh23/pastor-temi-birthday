@@ -12,7 +12,7 @@ export interface HeroSlides {
 
 export const heroSlides: HeroSlides[] = [
   {
-    src: "https://placehold.co/1920x1080/2C1A0A/F5E6C8?text=Photo+1",
+    src: "/images/hero/hero-1.jpg",
     alt: "Pastor photo 1",
   },
   {
