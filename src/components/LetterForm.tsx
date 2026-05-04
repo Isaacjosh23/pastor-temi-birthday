@@ -6,7 +6,6 @@ export interface LetterFormData {
   name: string;
   title: string;
   message: string;
-  remarks?: string;
 }
 
 interface LetterFormProps {
@@ -19,7 +18,6 @@ export default function LetterForm({ onSubmit, isLoading }: LetterFormProps) {
     name: "",
     title: "",
     message: "",
-    remarks: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -31,15 +29,9 @@ export default function LetterForm({ onSubmit, isLoading }: LetterFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      !form.name.trim() ||
-      !form.title.trim() ||
-      !form.message.trim() ||
-      !form.remarks?.trim()
-    )
-      return;
+    if (!form.name.trim() || !form.title.trim() || !form.message.trim()) return;
     await onSubmit(form);
-    setForm({ name: "", title: "", message: "", remarks: "" });
+    setForm({ name: "", title: "", message: "" });
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 4000);
   };
@@ -93,19 +85,6 @@ export default function LetterForm({ onSubmit, isLoading }: LetterFormProps) {
           required
           rows={7}
           className={`${inputClass} resize-none`}
-          style={{ fontFamily: "'Lato', sans-serif" }}
-        />
-      </div>
-
-      <div>
-        <label className={labelClass}> Closing Remarks *</label>
-        <input
-          name="remarks"
-          value={form.remarks}
-          onChange={handleChange}
-          placeholder="Yours sincerely"
-          required
-          className={inputClass + " italic"}
           style={{ fontFamily: "'Lato', sans-serif" }}
         />
       </div>

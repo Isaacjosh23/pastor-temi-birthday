@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import PlayIcon from "./ui/icons/play";
 
 interface VideoCardProps {
   id: string;
@@ -33,13 +34,7 @@ export default function VideoCard({
 
         <div className="absolute inset-0 bg-gradient-to-t from-mahogany/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <div className="w-24 h-24 rounded-full bg-gold/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <svg
-              className="w-12 h-12 text-mahogany ml-[0.4rem]"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M8 5v14l11-7z" />
-            </svg>
+            <PlayIcon className="w-12 h-12 text-mahogany ml-[0.4rem]" />
           </div>
         </div>
 

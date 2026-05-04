@@ -28,7 +28,7 @@ export default function GalleryPreview() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-[4.8rem]">
-          {featuredPhotos.map((photo) => (
+          {featuredPhotos.slice(0, 4).map((photo) => (
             <div
               key={photo.id}
               className="relative h-120 sm:h-100 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group"
