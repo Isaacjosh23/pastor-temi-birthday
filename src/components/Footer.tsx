@@ -5,7 +5,6 @@ export default function Footer() {
     <footer className="bg-mahogany text-cream py-[4.8rem] px-[2.4rem] md:px-[4.8rem] mt-auto">
       <div className="max-w-[120rem] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[3.2rem] mb-[3.2rem]">
-          {/* Brand */}
           <div>
             <h3
               className="text-gold text-[1.8rem] font-bold mb-[1.2rem]"
@@ -18,7 +17,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="text-gold text-[1.4rem] font-bold mb-[1.6rem]">
               Pages
@@ -42,7 +40,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
             <h4 className="text-gold text-[1.4rem] font-bold mb-[1.6rem]">
               Info
@@ -54,7 +51,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="border-t border-gold/20 pt-[2.4rem]">
           <p className="text-cream/60 text-[1.2rem] text-center">
             © 2026 Birthday Celebration. All rights reserved.

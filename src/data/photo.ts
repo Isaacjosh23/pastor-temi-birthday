@@ -110,9 +110,9 @@ export const featuredPhotos: Photo[] = [
     category: "featured",
   },
   {
-    id: 10,
-    src: "/images/gallery/current/current-10.jpg",
-    alt: "PT-10",
+    id: 49,
+    src: "/images/gallery/current/current-49.jpg",
+    alt: "PT-49",
     category: "featured",
   },
   {
@@ -182,9 +182,9 @@ export const featuredPhotos: Photo[] = [
     category: "featured",
   },
   {
-    id: 22,
-    src: "/images/gallery/current/current-22.jpg",
-    alt: "PT-22",
+    id: 50,
+    src: "/images/gallery/current/current-50.jpg",
+    alt: "PT-50",
     category: "featured",
   },
   {
