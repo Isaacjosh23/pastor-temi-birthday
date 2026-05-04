@@ -4,7 +4,6 @@ export interface Letter {
   id: string;
   name: string;
   title: string;
-  remarks?: string;
   message: string;
   createdAt: Date;
   approved: boolean;
@@ -50,7 +49,7 @@ export default function LetterCard({ letter, onReadMore }: LetterCardProps) {
         className="text-mahogany/50 text-[1.3rem] italic"
         style={{ fontFamily: "'Playfair Display', serif" }}
       >
-        — {letter.remarks?.trim() ? letter.remarks : letter.name}
+        — {letter.name}
       </p>
 
       <button

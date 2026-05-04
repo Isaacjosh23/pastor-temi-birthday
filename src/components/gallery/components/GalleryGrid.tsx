@@ -3,11 +3,7 @@
 import { allPhotos } from "@/data/photo";
 import Image from "next/image";
 
-interface GalleryGridProps {
-  onSelectedPhoto: (id: number | null) => void;
-}
-
-function GalleryGrid({ onSelectedPhoto }: GalleryGridProps) {
+function GalleryGrid() {
   return (
     <section className="py-[6.4rem] px-[2.4rem] md:px-[4.8rem] bg-cream">
       <div className="max-w-480 mx-auto">
@@ -16,7 +12,6 @@ function GalleryGrid({ onSelectedPhoto }: GalleryGridProps) {
             <div
               key={photo.id}
               className="group relative h-112 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
-              onClick={() => onSelectedPhoto(photo.id)}
             >
               <Image
                 src={photo.src}
