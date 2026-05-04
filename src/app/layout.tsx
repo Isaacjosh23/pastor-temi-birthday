@@ -16,8 +16,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  ),
   title: "Happy Birthday Pastor",
   description: "A celebration of faith, love & legacy",
+  openGraph: {
+    title: "Happy Birthday Pastor",
+    description: "A celebration of faith, love & legacy",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Happy Birthday Pastor",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Happy Birthday Pastor",
+    description: "A celebration of faith, love & legacy",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
