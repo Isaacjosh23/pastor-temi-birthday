@@ -60,7 +60,7 @@ export default function LettersCTA() {
                   className="text-gold text-[1.8rem] font-bold text-center mb-[1.2rem]"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
-                  Tributes & Memories
+                  Join the Celebration
                 </p>
                 <p className="text-cream/60 text-[1.4rem] text-center">
                   Join 20+ messages celebrating this special day
