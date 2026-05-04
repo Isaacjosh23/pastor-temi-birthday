@@ -9,6 +9,7 @@ interface LettersGridProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  isFetching: boolean;
 }
 
 export default function LettersGrid({
@@ -19,10 +20,10 @@ export default function LettersGrid({
   currentPage,
   totalPages,
   onPageChange,
+  isFetching,
 }: LettersGridProps) {
   return (
     <div>
-      {/* Sort Dropdown */}
       <div className="flex justify-end mb-[3.2rem]">
         <select
           value={sortOrder}
@@ -35,22 +36,31 @@ export default function LettersGrid({
         </select>
       </div>
 
-      {/* Empty State */}
       {letters.length === 0 ? (
         <div className="text-center py-[9.6rem]">
-          <p
-            className="text-mahogany/50 text-[1.8rem] mb-[0.8rem]"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            No letters yet
-          </p>
-          <p className="text-mahogany/40 text-[1.4rem]">
-            Be the first to write one!
-          </p>
+          {isFetching ? (
+            <p
+              className="text-mahogany/40 text-[1.6rem]"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Loading letters...
+            </p>
+          ) : (
+            <>
+              <p
+                className="text-mahogany/50 text-[1.8rem] mb-[0.8rem]"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                No letters yet
+              </p>
+              <p className="text-mahogany/40 text-[1.4rem]">
+                Be the first to write one!
+              </p>
+            </>
+          )}
         </div>
       ) : (
         <>
-          {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-[2.4rem]">
             {letters.map((letter) => (
               <LetterCard
@@ -61,7 +71,6 @@ export default function LettersGrid({
             ))}
           </div>
 
-          {/* Pagination */}
           {totalPages > 1 && (
             <Pagination
               currentPage={currentPage}
