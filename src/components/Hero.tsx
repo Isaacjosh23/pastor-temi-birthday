@@ -6,7 +6,7 @@ import { heroSlides } from "@/data/photo";
 import Link from "next/link";
 import EnvelopeIcon from "./ui/icons/envelope";
 
-const SLIDE_INTERVAL = 5000;
+const SLIDE_INTERVAL = 4000;
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
