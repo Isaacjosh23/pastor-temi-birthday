@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { heroSlides } from "@/data/photo";
 import Link from "next/link";
+import EnvelopeIcon from "./ui/icons/envelope";
 
 const SLIDE_INTERVAL = 5000;
 
@@ -97,9 +98,10 @@ export default function Hero() {
 
           <Link
             href="/letters"
-            className="px-[3.2rem] py-[1.4rem] rounded-full border-2 border-cream/50 text-cream text-[1.4rem] font-medium tracking-wider uppercase hover:border-gold hover:text-gold transition-all duration-300"
+            className="px-[3.2rem] py-[1.4rem] rounded-full border-2 border-cream/50 text-cream text-[1.4rem] font-medium tracking-wider uppercase hover:border-gold hover:text-gold transition-all duration-300 flex items-center gap-2.5"
           >
-            Write a Latter ✉
+            Write a Letter
+            <EnvelopeIcon className="size-6" />
           </Link>
         </div>
       </div>

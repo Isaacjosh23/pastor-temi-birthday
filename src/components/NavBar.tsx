@@ -16,6 +16,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  const isHomePage = pathname === "/";
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
@@ -26,12 +28,14 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [pathname]);
 
+  const isSolid = !isHomePage || isScrolled || menuOpen;
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled || menuOpen
+        isSolid
           ? "bg-mahogany shadow-[0_4px_32px_rgba(0,0,0,0.4)]"
-          : "bg-gradient-to-b from-mahogany/80 to-transparent"
+          : "bg-gradient-to-b from-mahogany-light to-transparent"
       }`}
     >
       <div className="max-w-480 mx-auto px-[2.4rem] md:px-[4.8rem]">
