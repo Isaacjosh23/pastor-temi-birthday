@@ -19,17 +19,21 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   ),
-  title: "Happy Birthday Pastor",
-  description: "A celebration of faith, love & legacy",
+  title:
+    "Happy Birthday Pastor Temitope — A Celebration of Faith, Love & Legacy",
+  description:
+    "Join us in celebrating a life of faith, grace and love. Share your birthday wishes, view memories, and write a heartfelt letter to Pastor Temitope on her special day.",
   openGraph: {
-    title: "Happy Birthday Pastor",
-    description: "A celebration of faith, love & legacy",
+    title:
+      "Happy Birthday Pastor Temitope — A Celebration of Faith, Love & Legacy",
+    description:
+      "Join us in celebrating a life of faith, grace and love. Share your birthday wishes, view memories, and write a heartfelt letter to Pastor Temitope on her special day.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Happy Birthday Pastor",
+        alt: "Happy Birthday Pastor Temitope",
       },
     ],
   },

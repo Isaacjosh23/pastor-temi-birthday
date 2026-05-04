@@ -7,7 +7,6 @@ export default function LettersCTA() {
     <section className="py-32 px-[2.4rem] md:px-[4.8rem] bg-mahogany">
       <div className="max-w-480 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[4.8rem] items-center">
-          {/* Left Content */}
           <div>
             <p
               className="text-gold text-[1.1rem] md:text-[1.2rem] tracking-[0.3em] uppercase font-medium mb-[1.6rem]"
@@ -27,7 +26,6 @@ export default function LettersCTA() {
               part of this special celebration.
             </p>
 
-            {/* CTA Button */}
             <Link
               href="/letters"
               className="inline-block px-[3.2rem] py-[1.4rem] rounded-full bg-gold text-mahogany text-[1.4rem] font-bold tracking-wider uppercase hover:bg-gold-light transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
@@ -36,10 +34,8 @@ export default function LettersCTA() {
             </Link>
           </div>
 
-          {/* Right Visual */}
           <div className="relative">
             <div className="bg-gradient-to-br from-gold/10 to-cream/10 rounded-lg p-[3.2rem] border border-gold/30">
-              {/* Letter Icon Illustration */}
               <div className="flex flex-col items-center justify-center h-128">
                 <div className="mb-[2.4rem]">
                   <svg
@@ -67,9 +63,8 @@ export default function LettersCTA() {
                 </p>
               </div>
 
-              {/* Decorative Elements */}
-              <div className="absolute top-[-1rem] right-[-1rem] w-[4rem] h-[4rem] bg-gold/20 rounded-full" />
-              <div className="absolute bottom-[-1rem] left-[-1rem] w-[6rem] h-[6rem] bg-cream/10 rounded-full" />
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gold/20 rounded-full" />
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-cream/10 rounded-full" />
             </div>
           </div>
         </div>
