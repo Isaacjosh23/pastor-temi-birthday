@@ -30,7 +30,7 @@ export const metadata: Metadata = {
       "Join us in celebrating a life of faith, grace and love. Share your birthday wishes, view memories, and write a heartfelt letter to Pastor Temitope on her special day.",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.jpg`,
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Happy Birthday Pastor Temitope",

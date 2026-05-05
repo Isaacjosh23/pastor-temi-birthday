@@ -109,48 +109,48 @@ export const featuredPhotos: Photo[] = [
     alt: "PT-9",
     category: "featured",
   },
-  {
-    id: 49,
-    src: "/images/gallery/current/current-49.jpg",
-    alt: "PT-49",
-    category: "featured",
-  },
+  // {
+  //   id: 49,
+  //   src: "/images/gallery/current/current-49.jpg",
+  //   alt: "PT-49",
+  //   category: "featured",
+  // },
   {
     id: 11,
     src: "/images/gallery/current/current-11.jpg",
     alt: "PT-11",
     category: "featured",
   },
-  {
-    id: 12,
-    src: "/images/gallery/current/current-12.jpg",
-    alt: "PT-12",
-    category: "featured",
-  },
-  {
-    id: 13,
-    src: "/images/gallery/current/current-13.jpg",
-    alt: "PT-13",
-    category: "featured",
-  },
-  {
-    id: 14,
-    src: "/images/gallery/current/current-14.jpg",
-    alt: "PT-14",
-    category: "featured",
-  },
+  // {
+  //   id: 12,
+  //   src: "/images/gallery/current/current-12.jpg",
+  //   alt: "PT-12",
+  //   category: "featured",
+  // },
+  // {
+  //   id: 13,
+  //   src: "/images/gallery/current/current-13.jpg",
+  //   alt: "PT-13",
+  //   category: "featured",
+  // },
+  // {
+  //   id: 14,
+  //   src: "/images/gallery/current/current-14.jpg",
+  //   alt: "PT-14",
+  //   category: "featured",
+  // },
   {
     id: 15,
     src: "/images/gallery/current/current-15.jpg",
     alt: "PT-15",
     category: "featured",
   },
-  {
-    id: 16,
-    src: "/images/gallery/current/current-16.jpg",
-    alt: "PT-16",
-    category: "featured",
-  },
+  // {
+  //   id: 16,
+  //   src: "/images/gallery/current/current-16.jpg",
+  //   alt: "PT-16",
+  //   category: "featured",
+  // },
   {
     id: 17,
     src: "/images/gallery/current/current-17.jpg",
@@ -181,12 +181,12 @@ export const featuredPhotos: Photo[] = [
     alt: "PT-21",
     category: "featured",
   },
-  {
-    id: 50,
-    src: "/images/gallery/current/current-50.jpg",
-    alt: "PT-50",
-    category: "featured",
-  },
+  // {
+  //   id: 50,
+  //   src: "/images/gallery/current/current-50.jpg",
+  //   alt: "PT-50",
+  //   category: "featured",
+  // },
   {
     id: 23,
     src: "/images/gallery/current/current-23.jpg",
@@ -266,6 +266,12 @@ export const featuredPhotos: Photo[] = [
     category: "featured",
   },
   {
+    id: 57,
+    src: "/images/gallery/current/PT-57.jpg",
+    alt: "PT-57",
+    category: "featured",
+  },
+  {
     id: 36,
     src: "/images/gallery/current/current-36.jpg",
     alt: "PT-36",
@@ -278,6 +284,12 @@ export const featuredPhotos: Photo[] = [
     category: "featured",
   },
   {
+    id: 62,
+    src: "/images/gallery/current/PT-62.jpg",
+    alt: "PT-62",
+    category: "featured",
+  },
+  {
     id: 38,
     src: "/images/gallery/current/current-38.jpg",
     alt: "PT-38",
@@ -287,6 +299,12 @@ export const featuredPhotos: Photo[] = [
     id: 39,
     src: "/images/gallery/current/current-39.jpg",
     alt: "PT-39",
+    category: "featured",
+  },
+  {
+    id: 69,
+    src: "/images/gallery/current/PT-69.jpg",
+    alt: "PT-69",
     category: "featured",
   },
   {
@@ -308,6 +326,12 @@ export const featuredPhotos: Photo[] = [
     category: "featured",
   },
   {
+    id: 74,
+    src: "/images/gallery/current/PT-74.jpg",
+    alt: "PT-74",
+    category: "featured",
+  },
+  {
     id: 43,
     src: "/images/gallery/current/current-43.jpg",
     alt: "PT-43",
@@ -317,6 +341,12 @@ export const featuredPhotos: Photo[] = [
     id: 44,
     src: "/images/gallery/current/current-44.jpg",
     alt: "PT-44",
+    category: "featured",
+  },
+  {
+    id: 83,
+    src: "/images/gallery/current/PT-83.jpg",
+    alt: "PT-83",
     category: "featured",
   },
   {
@@ -341,6 +371,12 @@ export const featuredPhotos: Photo[] = [
     id: 48,
     src: "/images/gallery/current/current-48.jpg",
     alt: "PT-48",
+    category: "featured",
+  },
+  {
+    id: 89,
+    src: "/images/gallery/current/PT-89.jpg",
+    alt: "PT-89",
     category: "featured",
   },
 ];
